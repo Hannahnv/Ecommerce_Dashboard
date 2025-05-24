@@ -1,0 +1,64 @@
+<!-- dashboard/templates/dashboard/product.html -->
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Ecommerce Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>Product Analysis</h1>
+    </div>
+    <div class="col-md-auto">
+        <div class="d-flex">
+            <select id="category-filter" class="form-select me-2">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <select id="subcategory-filter" class="form-select">
+                <option value="">All Subcategories</option>
+                {% for subcategory in subcategories %}
+                <option value="{{ subcategory.id }}" data-category="{{ subcategory.category.id }}">{{ subcategory.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sales and Profit by Product</h5>
+                <div id="product-metrics-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Average Discount and Profit Margin by Category</h5>
+                <div id="category-metrics-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Peak Sales by Month and Day of Week</h5>
+                <div id="peak-sales-heatmap" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/product.js' %}?v=2"></script>
+{% endblock %}

@@ -1,0 +1,127 @@
+<!-- dashboard/templates/dashboard/overview.html -->
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Ecommerce Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>Overview</h1>
+    </div>
+    <div class="col-md-auto">
+        <div class="d-flex">
+            <select id="year-filter" class="form-select me-2">
+                <option value="">All Years</option>
+                {% for year_obj in years %}
+                <option value="{{ year_obj.year }}">{{ year_obj.year }}</option>
+                {% endfor %}
+            </select>
+            <select id="quarter-filter" class="form-select me-2">
+                <option value="">All Quarters</option>
+                <option value="1">Q1</option>
+                <option value="2">Q2</option>
+                <option value="3">Q3</option>
+                <option value="4">Q4</option>
+            </select>
+            <select id="month-filter" class="form-select">
+                <option value="">All Months</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- KPIs -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Sales</h5>
+                <h2 class="card-text" id="total-sales">$0</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Profit</h5>
+                <h2 class="card-text" id="total-profit">$0</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Quantity</h5>
+                <h2 class="card-text" id="total-quantity">0</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sales by Market</h5>
+                <div id="sales-by-market-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Quantity by Year</h5>
+                <div id="quantity-by-year-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Profit by Category</h5>
+                <div id="profit-by-category-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sales by Customer Segment</h5>
+                <div id="sales-by-segment-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Order Quantity Distribution</h5>
+                <div id="order-quantity-distribution-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/overview.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,58 @@
+<!-- dashboard/templates/dashboard/market.html -->
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Ecommerce Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>Market Analysis</h1>
+    </div>
+    <div class="col-md-auto">
+        <div class="d-flex">
+            <select id="market-filter" class="form-select">
+                <option value="">All Markets</option>
+                {% for market in markets %}
+                <option value="{{ market.id }}">{{ market.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sales by Market</h5>
+                <div id="sales-by-market-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Profit by Region and Market</h5>
+                <div id="profit-by-region-market-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Top 5 Best Selling Products by Market</h5>
+                <div id="top-products-by-market" style="height: 500px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/market.js' %}"></script>
+{% endblock %}

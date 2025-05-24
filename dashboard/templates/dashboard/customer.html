@@ -1,0 +1,86 @@
+<!-- dashboard/templates/dashboard/customer.html -->
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Ecommerce Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>Customer Analysis</h1>
+    </div>
+    <div class="col-md-auto">
+        <div class="d-flex">
+            <select id="segment-filter" class="form-select">
+                <option value="">All Segments</option>
+                {% for segment in segments %}
+                <option value="{{ segment.id }}">{{ segment.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- KPIs -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Customers</h5>
+                <h2 class="card-text" id="total-customers">0</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Average Order Value (AOV)</h5>
+                <h2 class="card-text" id="aov">$0</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Revenue per Customer</h5>
+                <h2 class="card-text" id="revenue-per-customer">$0</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Customers by Segment</h5>
+                <div id="customers-by-segment-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Purchase Frequency Distribution</h5>
+                <div id="purchase-frequency-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Top 10 Customers by Sales</h5>
+                <div id="top-customers-table" style="height: 400px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/customer.js' %}"></script>
+{% endblock %}
